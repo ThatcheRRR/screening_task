@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text } from "react-native";
 import { styles } from '../../styles/styles';
 
-const ForecastPage = () => (
+const HistoryPage = () => (
     <View style = {styles.container}>
         <Text style = {styles.text}>History</Text>
     </View>
 );
 
-export default ForecastPage;
+export default HistoryPage;
