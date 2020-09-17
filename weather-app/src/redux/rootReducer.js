@@ -1,22 +1,10 @@
-import { INIT } from './types';
+import { combineReducers } from 'redux';
+import { historyReducer } from './reducers/historyReducer';
+import { weatherReducer } from './reducers/weatherReducer';
+import { appReducer } from './reducers/appReducer'
 
-const initialState = {
-    cords: [0, 0],
-    weather: null,
-    temperature: null,
-    city: null,
-};
-
-export const rootReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case INIT:
-            return {
-                ...state,
-                cords: action.cords,
-                city: action.city,
-                temperature: action.temperature,
-                weather: action.weather
-            }
-        default: return state;
-    }
-}
+export const rootReducer = combineReducers({
+    history: historyReducer,
+    weather: weatherReducer,
+    app: appReducer
+});

@@ -1,1 +1,5 @@
-export const INIT = 'APP/INIT';
+export const GET_WEATHER = 'WEATHER/GET_WEATHER';
+export const PUSH_INTO_HISTORY = 'HISTORY/PUSH_INTO_HISTORY';
+export const GET_FROM_HISTORY = 'HISTORY/GET_FROM_HISTORY';
+export const ERROR = 'APP/ERROR';
+export const REMOVE_ERROR = 'APP/REMOVE_ERROR';

@@ -4,8 +4,6 @@ import mapboxgl from 'mapbox-gl';
 import { connect } from 'react-redux';
 import { styles } from '../../styles/styles';
 
-const token = 'pk.eyJ1IjoidGhhdGNoZXIiLCJhIjoiY2s2NmM1ZmxnMDVlcDNrbTgyZGJ1MHlvcyJ9.8wM1j84kDuFiTNkZIkMlHQ';
-
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhhdGNoZXIiLCJhIjoiY2s2NmM1ZmxnMDVlcDNrbTgyZGJ1MHlvcyJ9.8wM1j84kDuFiTNkZIkMlHQ';
 
 class Map extends React.Component {
@@ -15,7 +13,8 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    const [lat, lng] = this.props.cords;
+    const lat = this.props.lat;
+    const lng = this.props.lng;
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -25,8 +24,9 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.cords !== this.props.cords) {
-      const [lat, lng] = this.props.cords;
+    if(prevProps !== this.props) {
+      const lat = this.props.lat;
+      const lng = this.props.lng;
       this.map.setCenter([lng, lat]);
     }
   }
@@ -42,7 +42,8 @@ class Map extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  cords: state.cords
+  lat: state.weather.lat,
+  lng: state.weather.lng
 })
 
 export default connect(mapStateToProps)(Map);
