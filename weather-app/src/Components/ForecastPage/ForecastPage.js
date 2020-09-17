@@ -4,7 +4,7 @@ import { withForecast } from '../hoc/withForecast';
 import Map from '../Map/Map';
 import { styles } from '../../styles/styles';
 
-const ForecastPage = ({ weather, temperature, coords, city }) => {
+const ForecastPage = ({ weather, temperature, cords, city }) => {
     const [text, setText] = useState('');
 
     return (
@@ -16,7 +16,7 @@ const ForecastPage = ({ weather, temperature, coords, city }) => {
                 value = {text}
                 style = {styles.input}
             />
-            <Text style = {styles.text}>Координаты: {coords}</Text>
+            <Text style = {styles.text}>Координаты: {`${cords}`}</Text>
             <Text style = {styles.text}>Город: {city}</Text>
             <Text style = {styles.text}>Температура: {temperature}</Text>
             <Text style = {styles.text}>{weather}</Text>

@@ -1,10 +1,10 @@
 import { INIT } from './types';
 
 const initialState = {
-    pos: [],
+    cords: [0, 0],
     weather: null,
     temperature: null,
-    city: null
+    city: null,
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ export const rootReducer = (state = initialState, action) => {
         case INIT:
             return {
                 ...state,
-                coords: action.coords,
+                cords: action.cords,
                 city: action.city,
                 temperature: action.temperature,
                 weather: action.weather

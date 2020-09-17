@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
     container: {
+        position: 'relative',
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
@@ -21,24 +22,18 @@ export const styles = StyleSheet.create({
         borderBottomWidth: '1px',
         marginBottom: '15px'
     },
-    mapContainer: {
-        borderRadius: '50px',
-        overflow: 'hidden',
-        display: 'inline-block',
-        position: 'absolute',
-        top: '-140px',
-        right: '15px',
-        margin: '12px',
-        width: '400px',
-        height: '400px',
-        color: '#ffffff',
-        zIndex: '1',
-        padding: '6px',
-        fontWeight: 'bold',
-    },
     text: {
         fontSize: '16px',
         lineHeight: '2rem',
         paddingLeft: '15px'
+    },
+    mapContainer: {
+        position: 'absolute',
+        height: '400px',
+        width: '400px',
+        top: '100px',
+        right: '20px',
+        overflow: 'hidden',
+        borderRadius: '50px'
     }
 });

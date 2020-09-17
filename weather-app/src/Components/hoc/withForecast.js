@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export const withForecast = (Wrapped) => {
     return function(props) {
         const dispatch = useDispatch();
-        const coords = useSelector(state => state.coords);
+        const cords = useSelector(state => state.cords);
         const city = useSelector(state => state.city);
         const temperature = useSelector(state => state.temperature);
         const weather = useSelector(state => state.weather);
@@ -15,7 +15,7 @@ export const withForecast = (Wrapped) => {
         }, []);
 
         return(
-            <Wrapped {...props} coords = {coords} city = {city} temperature = {temperature} weather = {weather} />
+            <Wrapped {...props} cords = {cords} city = {city} temperature = {temperature} weather = {weather} />
         );
     }
 }

@@ -1,49 +1,48 @@
 import React from 'react';
 import { View } from 'react-native';
-import { connect } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
+import { connect } from 'react-redux';
 import { styles } from '../../styles/styles';
+
+const token = 'pk.eyJ1IjoidGhhdGNoZXIiLCJhIjoiY2s2NmM1ZmxnMDVlcDNrbTgyZGJ1MHlvcyJ9.8wM1j84kDuFiTNkZIkMlHQ';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhhdGNoZXIiLCJhIjoiY2s2NmM1ZmxnMDVlcDNrbTgyZGJ1MHlvcyJ9.8wM1j84kDuFiTNkZIkMlHQ';
 
 class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      lng: 52.42,
-      lat: 31.01,
-      zoom: 8
-    };
+    this.map = null;
   }
 
   componentDidMount() {
-    const map = new mapboxgl.Map({
+    const [lat, lng] = this.props.cords;
+    this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
+      center: [lng, lat],
+      zoom: 12
     });
+  }
 
-    map.on('move', () => {
-      this.setState({
-        lng: map.getCenter().lng.toFixed(4),
-        lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      });
-    });
+  componentDidUpdate(prevProps) {
+    if(prevProps.cords !== this.props.cords) {
+      const [lat, lng] = this.props.cords;
+      this.map.setCenter([lng, lat]);
+    }
   }
 
   render() {
     return (
-      <View>
-        <View ref={el => this.mapContainer = el} style = {styles.mapContainer} />
-      </View>
+      <View
+        ref = {el => this.mapContainer = el}
+        style = {styles.mapContainer}
+      />
     )
   }
 }
 
 const mapStateToProps = state => ({
-
-});
+  cords: state.cords
+})
 
 export default connect(mapStateToProps)(Map);
