@@ -4,7 +4,7 @@ import { styles } from '../../styles/styles';
 
 const HistoryPage = () => (
     <View style = {styles.container}>
-        <Text style = {styles.text}>History</Text>
+        <Text style = {styles.header}>History</Text>
     </View>
 );
 

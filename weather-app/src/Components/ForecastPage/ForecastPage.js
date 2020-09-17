@@ -1,25 +1,28 @@
-import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput } from "react-native";
+import { withForecast } from '../hoc/withForecast';
+import Map from '../Map/Map';
 import { styles } from '../../styles/styles';
-import { userLocation } from '../../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
 
-const ForecastPage = () => {
-    const dispatch = useDispatch();
-    const coords = useSelector(state => state.coords);
-    const city = useSelector(state => state.city);
-
-    useEffect(() => {
-        dispatch(userLocation())
-    }, [])
+const ForecastPage = ({ weather, temperature, coords, city }) => {
+    const [text, setText] = useState('');
 
     return (
         <View style = {styles.container}>
-            <Text style = {styles.text}>Forecast</Text>
-            <Text>Координаты: {coords}</Text>
-            <Text>Город: {city}</Text>
+            <Text style = {styles.header}>Forecast</Text>
+            <TextInput
+                placeholder = 'Введите город'
+                onChangeText = {(value) => setText(value)}
+                value = {text}
+                style = {styles.input}
+            />
+            <Text style = {styles.text}>Координаты: {coords}</Text>
+            <Text style = {styles.text}>Город: {city}</Text>
+            <Text style = {styles.text}>Температура: {temperature}</Text>
+            <Text style = {styles.text}>{weather}</Text>
+            <Map />
         </View>
     );
 };
 
-export default ForecastPage;
+export default withForecast(ForecastPage);
